@@ -278,7 +278,10 @@ class Navigation
         }
     }
 
-    //Setze TopNavigation abhängig vom Content
+    /**
+     * Set different top navigations with include files
+     * @return mixed
+     */
     public function setTopNavigation()
     {
         $nav = array("inc/nav.inc", "inc/nav_cont.inc");
