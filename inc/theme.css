@@ -1,0 +1,251 @@
+body {
+padding-top: 70px;
+padding-bottom: 30px;
+}
+
+/* content in the front page */
+.front-h2 {
+    margin-top: 2rem;
+}
+.front-h4 {
+    margin-top: 1rem; !important;
+    margin-bottom: 3rem; !important;
+}
+h3 {
+    margin-top: 2.5rem;
+    background-color: lightblue;
+    padding: 0.5rem;
+}
+small {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  color: #777;
+}
+
+
+
+
+/* Footnote */
+.ftnote {
+  list-style-type: none;
+  font-size: 12px;
+  color: #777;
+}
+
+sup {
+  color: #ff0000;
+}
+
+/* Einleitung zu einem Semester. Der Abstand soll kleiner als
+der Standard sein.
+*/
+.jumbotron {
+  margin-top: -45px;
+  background-color: #dce1e2;
+}
+/*
+Oberer Abstand des Panel vergrössern
+*/
+.panel {
+margin-top: 35px;
+}
+h4 {
+margin-top: 25px;
+}
+.theme-dropdown .dropdown-menu {
+position: static;
+display: block;
+margin-bottom: 20px;
+}
+.theme-showcase > p > .btn {
+margin: 5px 0;
+}
+.theme-showcase .navbar .container {
+width: auto;
+}
+blockquote {
+padding: 10px 20px;
+margin: 0 0 20px;
+font-size: 110%;
+border-left: 5px solid red;
+}
+/*
+.embed-responsive {
+position: relative;
+display: block;
+height: 0;
+padding: 0;
+overflow: hidden;
+}
+*/
+.embed-responsive {
+width:100%;
+float:left;
+height:100%;
+border:1px solid #5694cf;
+padding-bottom:80%;
+}
+/* table { width: 800px; } */
+th {
+padding: 5px;
+font-size: 80%;
+border-top: 1px solid black;
+border-bottom: 1px solid black;
+text-align: left;
+}
+.ku { background-color: lightgrey ; }
+.elearn { background-color: lightgreen;}
+.b0 { width: 5%; }
+.b1 { width: 10%; }
+.b2 { width: 15%; }
+.b3 { width: 70%; }
+td { padding: 5px;}
+tr { vertical-align: top;
+border-bottom: 1px dotted black;
+}
+td:hover {
+background: yellow;
+color: black;
+}
+
+/* http://stackoverflow.com/questions/19138758/how-to-align-caption-underneath-image */
+
+figure {
+    display: inline-block;
+    border: 1px dotted gray;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    vertical-align: top;
+    border: 1px dotted black;
+    text-align: center;
+}
+
+img {
+    vertical-align: top;
+}
+
+figcaption {
+    border: 1px dotted black;
+    text-align: center;
+    /* background: rgba(0, 0, 0, 0.5); */
+}
+
+
+img.xlarge  { width: 120%; height: 120%; }
+img.normal  { width: 100%; height: 100%; }
+img.large  { width: 80%; height: 80%; }
+img.medium { width: 60%; height: 60%; }
+img.small { width: 40%; height: 40%; }
+.icon { 
+  float: right;
+  margin-right: 3px;
+  margin-bottom: 3px; 
+  width: 20%; 
+  height: 20%; 
+}
+
+.iconM { 
+  float: right;
+  margin-right: 3px;
+  margin-bottom: 3px; 
+  width: 40%; 
+  height: 40%; 
+}
+
+.icon32 { 
+  margin-top: -5px;
+  padding: 3px;
+  width: 32px; 
+  height: 32px; 
+}
+
+.iconVideo { 
+  width: 24px; 
+  height: 24px; 
+}
+
+.icon64 { 
+  float: right;
+  width: 64px; 
+  height: 64px; 
+}
+
+/* Integration von Charts über iframe */
+iframe.charts {
+  display: block;
+  margin: 0px auto;
+  /*height: 100%;*/
+  width: 500px;
+  border: 0 none;
+  align-items: inherit;
+}
+
+/*a:link, a:visited, a:hover {*/
+/*    border-bottom: 1px dotted #0066cc;*/
+/*}*/
+
+.solution {
+    font-family: "Courier New", Courier, mono;
+    color: red;
+    font-weight: bold;
+}
+
+iframe.example {
+    display: inline;
+    overflow:hidden;
+    width: 800px;
+    border:none; /* optional */
+}
+
+iframe.exampleNoWith {
+    display: inline;
+    overflow:hidden;
+    border:none; /* optional */
+}
+
+.calc {
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-size: 15px;
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  /* background-color: #f5f5f5; */
+  /* border: 1px solid #ccc; */
+  /* border-radius: 4px; */
+}
+
+.markit {
+    color: red;
+}
+
+mark, .mark {
+    padding: .2em;
+    background-color: rgb(204,204,0);
+}
+
+
+.important {
+  color:#ff0000; 
+  margin: 5px;
+  padding: 10px; 
+  border: 2px solid red;
+  width: fit-content;
+}
+
+.remark {
+  color:black; 
+  margin: 5px;
+  padding: 10px; 
+  border: 2px solid #59beee;
+  width: fit-content;
+}
+
+.form-check{
+    padding-top: 0.5rem;!important;
+}
