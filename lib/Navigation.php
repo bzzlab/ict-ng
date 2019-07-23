@@ -3,6 +3,9 @@ require_once(__DIR__ . '/SiteURL.php');
 require_once(__DIR__ . '/Teacher.php');
 require_once(__DIR__ . '/Semester.php');
 require_once(__DIR__ . '/Year.php');
+require_once(__DIR__ . '/NavDropDown.php');
+require_once(__DIR__ . '/NavDropDownList.php');
+require_once(__DIR__ . '/NavDropDownExtra.php');
 
 class Navigation
 {
@@ -148,8 +151,7 @@ class Navigation
         $base_url = sprintf("content.php?file=data/%s/%s/%s/org",$lp,$ye,$sem);
         $topNavList = array("Home" => $base_url . "/home.md",
             "Agenda" => $base_url . "/agenda.md",
-            "Organisation" => $base_url . "/organisation.md",
-            "Jahrgang" => "index.php?clear=all");
+            "Organisation" => $base_url . "/organisation.md");
 
         //Change url for specific semester
         if(strcmp($sem, "08")==0 || strcmp($sem, "04")==0 ||
@@ -160,11 +162,9 @@ class Navigation
         if((strcmp($sem, "05")==0))
         {
             //remove the last element
-            array_pop($topNavList);
+            //array_pop($topNavList);
             //add element for Musterlösung
             $topNavList += ["Lösungen" => $base_url . "/loesungen.md"];
-            //add again Menu "Semster" that should appear as last element
-            $topNavList += ["Jahrgang" => "index.php"];
         }
 
         if((strcmp($sem, "pw01")==0))
@@ -189,69 +189,49 @@ class Navigation
 
 
     /**
-     * Create semester links for the dropdown selection
-     * @param $lp: teacher
-     * @param $ye: year
-     * @param $currentSem: current semester from the Year-selection (Jahrgang)
-     * @return array: result as an array
-     */
-    private function getBaseDropDownMenuSites($lp,$ye, $currentSem){
-
-        $_List = array(
-            "Selfhtml" => "https://wiki.selfhtml.org",
-            "Can I use" => "http://caniuse.com/"
-        );
-        //add semesters
-        for($i=1;$i<9;$i++){
-            //if $current semester is equal index $i then skip adding url
-            //if((strcmp($currentSem, sprintf('%02d',$i))==0)) { continue;}
-            $_List += [sprintf('Sem-%02d',$i) =>
-                sprintf("content.php?sem=0%s&inc=1&file=data/%s/%s/0%s/org/agenda.md",$i,$lp,$ye,$i)];
-        }
-        return $_List;
-    }
-
-    /**
      * @return array: List of navigation-items in the dropdown
      */
-    public function getDropDownMenuSites()
+    //TODO: Refactor with NavDropDown + NavDropDownList
+    public function getDropDownMore()
     {
         $lp = $this->teacher->getSessionValue();
         $ye = $this->year->getSessionValue();
         $sem = $this->semester->getSessionValue();
         $base_url = sprintf("content.php?file=data/%s/%s/%s/org",$lp,$ye,$sem);
 
-        $topNavList = $this->getBaseDropDownMenuSites($lp,$ye,$sem);
+        //init ddl-nav-list
+        $_List = array();
+        $_ddlExtra = new NavDropDownExtra();
+
+        //add basic links into the "More"-navigation
+        array_push($_List,
+            new NavDropDown("Jahrgang","index.php?clear=all", $_ddlExtra ));
+        array_push($_List,
+            new NavDropDown("Selfhtml","https://wiki.selfhtml.org", $_ddlExtra ));
+        array_push($_List,
+            new NavDropDown("Can I use","http://caniuse.com/", $_ddlExtra));
 
 
         if((strcmp($sem, "pw01")==0))
         {
-            $topNavList = array(
-                "Organisation" => $base_url . "/organisation.md",
-                "Unterlagen" => $base_url . "/unterlagen.md",
-                "Jahrgang" => "index.php?clear=all");
-        }
+            //clear navigation list
+            unset($_List);
+            array_push($_List,
+                new NavDropDown("Organisation",$base_url . "/organisation.md", $_ddlExtra ));
+            array_push($_List,
+                new NavDropDown("Unterlagen",$base_url . "/unterlagen.md", $_ddlExtra ));
 
-        //dropdown module
-        if((strcmp($sem, "m286")==0)) {
-            $topNavList = array(
-                "Selfhtml" => "https://wiki.selfhtml.org",
-                "Can I use" => "http://caniuse.com/",
-                "Jahrgang" => "index.php?clear=all"
-            );
         }
-
 
         if ((strcmp($sem, "06")==0))
         {
             //remove the last element
             //array_pop($topNavList);
             //add element for Musterlösung
-            $topNavList += ["MySQL Commands" => "https://www.tutorialspoint.com/mysql/index.htm"];
-            $topNavList += ["Probelektion" => $base_url . "/probelektion.md"];
+            array_push($_List,
+                new NavDropDown("MySQL Commands","https://www.tutorialspoint.com/mysql/index.htm", $_ddlExtra));
         }
-        return $topNavList;
-
+        return new NavDropDownList($_List, "More");
     }
 
 
@@ -263,6 +243,7 @@ class Navigation
         //to highlight the selected menu-item
         foreach ($siteList as $siteCaption => $siteUrl) {
             if ($this->site->contains(strtolower($siteCaption), $part)) {
+                //NavLink(NavTypeEnum::
                 printf("<li class=\"nav-item active\"><a class=\"nav-link\" href='%s'>%s</a></li>", $siteUrl, $siteCaption);
             } else {
                 printf("<li class=\"nav-item\"><a class=\"nav-link\" href='%s'>%s</a></li>", $siteUrl, $siteCaption);
@@ -270,13 +251,57 @@ class Navigation
         }
     }
 
-    public function setDropDownMenuNavigation()
-    {
-        $siteList = $this->getDropDownMenuSites();
-        foreach ($siteList as $siteCaption => $siteUrl) {
-            printf("<a class=\"dropdown-item\" href='%s'>%s</a>", $siteUrl, $siteCaption);
+
+    private function getDropDownSemester() : NavDropDownList{
+        $lp = $this->teacher->getSessionValue();
+        $ye = $this->year->getSessionValue();
+        $sem = $this->semester->getSessionValue();
+
+        //set current semester that is set in Year -> settings
+        if (strlen($currentSemester = $this->year->getCurrentSemester($ye)) <= 0){
+            $currentSemester = $sem;
         }
+        //init ddl-nav-list
+        $_List = array();
+
+        for($i=1;$i<9;$i++){
+            /* Important: create new NavDropDownExtra here (and not before the loop)
+               in order to initialize correct the extras
+            */
+            $_ddExtra = new NavDropDownExtra();
+            //if $current semester is equal index $i then skip adding url
+            if((strcmp($currentSemester, sprintf('%02d',$i))==0)) {
+                $_ddExtra->setBadge("badge badge-info");
+                $_ddExtra->setTooltip("Ihr Semester in diesem Lehrjahr");
+            }
+            array_push($_List, new NavDropDown(sprintf('Sem-%02d',$i),
+                sprintf("content.php?sem=0%s&inc=1&file=data/%s/%s/0%s/org/agenda.md",
+                    $i,$lp,$ye,$i), $_ddExtra));
+
+        }
+
+        return new NavDropDownList($_List, "Semester");
     }
+
+    public function writeDropDownSemester(){
+        printf("%s", $this->getDropDownSemester()->write());
+    }
+
+    public function writeDropDownMore(){
+        printf("%s", $this->getDropDownMore()->write());
+    }
+
+
+
+
+//    //TODO: Refactor
+//    public function setDropDownMenuNavigation()
+//    {
+//        $siteList = $this->getDropDownMenuSites();
+//        foreach ($siteList as $siteCaption => $siteUrl) {
+//            printf("<a class=\"dropdown-item\" href='%s'>%s</a>", $siteUrl, $siteCaption);
+//        }
+//    }
 
     /**
      * Set different top navigations with include files

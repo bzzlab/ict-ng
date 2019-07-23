@@ -24,15 +24,8 @@ require_once(__DIR__ . '/lib/Year.php');
         <ul class="navbar-nav">
             <!-- creates li-items see https://getbootstrap.com/docs/4.3/components/navbar/ -->
             <?php $nav->setLinksOfTopNavigation(); ?>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                   role="button" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false">More
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <?php $nav->setDropDownMenuNavigation(); ?>
-                </div>
-            </li>
+            <?php $nav->writeDropDownSemester(); ?>
+            <?php $nav->writeDropDownMore(); ?>
         </ul>
     </div>
 </nav>

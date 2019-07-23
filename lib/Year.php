@@ -36,6 +36,13 @@ class Year
         2019 => array("lp02","m286")
     );
 
+    public function getCurrentSemester($year){
+        return $this->settings[$year][1];
+    }
+    public function getCurrentTeacher($year){
+        return $this->settings[$year][0];
+    }
+
     public function getAllowedValues():array {
         return array(2016,2017,2018,2019);
     }
