@@ -1,6 +1,6 @@
 <?php
+require_once(__DIR__ . '/lib/Semester.php');
 require_once(__DIR__ . '/lib/Teacher.php');
-$teacher = new Teacher();
 require_once(__DIR__ . '/lib/Navigation.php');
 $nav = new Navigation();
 ?>
@@ -8,22 +8,26 @@ $nav = new Navigation();
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <?php include_once("inc/head_src.inc"); ?>
+    <?php //include_once("inc/head.inc"); ?>
+    <link href="inc/vendor/prism/prism.css" rel="stylesheet" data-noprefix>
 </head>
 <body>
 <?php
+$lp = (new Teacher())->getSessionValue();
+$ye = (new Year())->getSessionValue();
+$sem = (new Semester())->getSessionValue();
+
 if (isset($_GET["file"])) {
-   	$style = "hljs xml";
-   	//V2.0 feature - add new teacher (lp)
-    //expression means if not found then
-    $lp = $teacher->getSessionValue();
-    $file = $nav->getNewPath($_GET["file"], $lp, null,null);
+    $preStyle = "class=\"line-numbers\" data-src=\"inc/vendor/prism/prism-line-numbers.js\"";
+    $codeStyle ="class=\"language-javascript\"";
+
+    $file = $nav->getNewPath($_GET["file"], $lp, $ye,$sem);
 
     if (isset($_GET["style"])) {
         $style = $_GET["style"];
         if ($style == "exam") {
             //for exams to show possible solutions
-            printf("<style>.hljs-comment {color: #97e4b3;}</style><pre><code>%s</code></pre>", 
+            printf("<pre><code>%s</code></pre>",
             htmlspecialchars(file_get_contents($file)));
         } else {
             //when style=css
@@ -32,11 +36,10 @@ if (isset($_GET["file"])) {
         }
     }
     else {
-        printf("<pre><code>%s</code></pre>", 
-        htmlspecialchars(file_get_contents($file)));
+        printf("<pre %s><code %s>%s</code></pre>", $preStyle, $codeStyle,
+            htmlspecialchars(file_get_contents($file)));
     }
 }
-
 $browser_link = sprintf("So sieht es im <a href='%s' target='tab'>Browser</a> aus.",$file);
 
 if (isset($_GET["browser"])) {
@@ -48,12 +51,15 @@ if (isset($_GET["browser"])) {
 
 if (isset($_GET["file2"])) {
     $lp = $teacher->getSessionValue();
-    $file2 = $nav->getNewPath($_GET["file2"], $lp, null,null);
+    $file2 = $nav->getNewPath($_GET["file2"], $lp, $ye,$sem);
     $browser_link = sprintf("So sieht es im <a href='%s' target='tab'>Browser</a> aus.",$file2);
 }
 
-
 printf("<p>%s</p>",$browser_link);
 ?>
+
+<script src="inc/vendor/prism/prism.js"></script>
+<script src="inc/vendor/prism/prism-line-numbers.js"></script>
+
 </body>
 </html>

@@ -15,7 +15,7 @@ $path = "./";
 <link href=<?=$path. "inc/vendor/bootstrap/css/bootstrap.css" ?> rel="stylesheet">
 <link href=<?=$path. "inc/vendor/bootstrap/css/bootstrap-theme.css" ?> rel="stylesheet">
 <link href=<?=$path. "inc/vendor/bootstrap/css/ie10-viewport-bug-workaround.css" ?> rel="stylesheet">
-<script type="text/javascript" src=<?=$path. "inc/vendor/jquery/jquery-3.2.1.js" ?>></script>
+<script type="text/javascript" src=<?=$path. "inc/vendor/jquery/jquery-3.4.1.js" ?>></script>
 <script>window.jQuery || document.write('<script src=<?=$path. "inc/vendor/bootstrap/js/jquery-2.2.2.min.js" ?>><\/script>')</script>
 <script type="text/javascript" src=<?=$path. "inc/vendor/bootstrap/js/bootstrap.min.js" ?>></script>
 <link href=<?=$path. "inc/vendor/highlight/css/highlight.agate.css" ?> media="screen" rel="stylesheet">

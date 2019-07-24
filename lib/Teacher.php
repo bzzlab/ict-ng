@@ -32,9 +32,7 @@ class Teacher {
         $this->cookieIO = new CookieIO();
     }
 
-    public function setSessionValue($value){
-        $this->sessionIO->set(self::ENTITY_ID, $value);
-    }
+
 
     /**
      * Return allowed values as an array
@@ -44,14 +42,41 @@ class Teacher {
         return array("lp01","lp02");
     }
 
+
+    /**
+     * Get stored value
+     * @return string
+     */
+    public function getValue(){
+        $result = $this->getSessionValue();
+        if (strlen($result)<=0){
+            //session is empty. So try now the cookie value
+            $result = $this->getCookieValue();
+        }
+        return $result;
+    }
+
+    /**
+     * Store value
+     * @param $value
+     */
+    public function setValue($value){
+        $this->setSessionValue($value);
+        $this->setCookieValue($value);
+    }
+
+
+
+
     public function getSessionValue(){
         return $this->sessionIO->get(self::ENTITY_ID);
     }
-
+    public function setSessionValue($value){
+        $this->sessionIO->set(self::ENTITY_ID, $value);
+    }
     public function setCookieValue($value){
         $this->cookieIO->setCookie(self::ENTITY_ID, $value);
     }
-
     public function getCookieValue(){
         return $this->cookieIO->getCookie(self::ENTITY_ID);
     }

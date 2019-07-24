@@ -47,6 +47,28 @@ class Year
         return array(2016,2017,2018,2019);
     }
 
+    /**
+     * Get stored value
+     * @return string
+     */
+    public function getValue(){
+        $result = $this->getSessionValue();
+        if (strlen($result)<=0){
+            //session is empty. So try now the cookie value
+            $result = $this->getCookieValue();
+        }
+        return $result;
+    }
+
+    /**
+     * Store value
+     * @param $value
+     */
+    public function setValue($value){
+        $this->setSessionValue($value);
+        $this->setCookieValue($value);
+    }
+
 
     public function setCookieValue($value){
         $this->cookieIO->setCookie(self::ENTITY_ID, $value);

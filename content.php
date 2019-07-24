@@ -6,12 +6,13 @@ require_once(__DIR__ . '/lib/Semester.php');
 require_once(__DIR__ . '/lib/Content.php');
 $content = new Content();
 require_once(__DIR__ . '/lib/Year.php');
+require_once(__DIR__ . '/lib/enums/ModeTypeEnum.php');
+require_once(__DIR__ . '/lib/System.php');
 ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <?php include_once("inc/head.inc"); ?>
-    <link href="inc/dashboard.css" rel="stylesheet">
 </head>
 <body>
 <!-- Fixed navbar -->
@@ -48,6 +49,7 @@ require_once(__DIR__ . '/lib/Year.php');
 } ?>
 <div class="container-fluid" role="main">
     <?php
+
     /**
      * This part is used for direct links called outside
      * of this platform.
@@ -57,32 +59,43 @@ require_once(__DIR__ . '/lib/Year.php');
         $teacher = new Teacher();
         $year = new Year();
         //init variables
-        $lp = $sem = $ye = "";
+        $lp = $teacher->getValue();
+        $ye = $year->getValue();
+        $sem = $semester->getValue();
+        //set hidden data for adjust-links
 
+        //set teacher
         if (isset($_GET["lp"])) {
-            $teacher->setSessionValue($_GET["lp"]);
+            $lp = $_GET["lp"];
+            if (isset($_GET["mode"]) && ($_GET["mode"]==ModeTypeEnum::Persist) ) {
+                $teacher->setSessionValue($_GET["lp"]);
+            }
         }
-        if (isset($_GET["sem"])) {
-            $semester->setSessionValue($_GET["sem"]);
-        }
-        //because of new feature
+
+        //set year
         if (isset($_GET["year"])) {
-            if (strlen($_GET["year"])<=0) {
-                //set default year
-                $ye = "2017";
-                $year->setSessionValue($ye);
-            } else {
+            $ye = $_GET["year"];
+            if (isset($_GET["mode"]) && ($_GET["mode"]==ModeTypeEnum::Persist) ) {
                 $year->setSessionValue($_GET["year"]);
             }
         }
+
+
+        //set semester
+        if (isset($_GET["sem"])) {
+            $sem = $_GET["sem"];
+            if (isset($_GET["mode"]) && ($_GET["mode"]==ModeTypeEnum::Persist) ) {
+                $semester->setSessionValue($_GET["sem"]);
+            }
+            $semester->setSessionValue($_GET["sem"]);
+        }
+
         /**
          *  Set hidden values. Call method when all session values are set.
          */
         $nav->setHiddenSessions($lp,$ye,$sem);
-
-        $lp = $teacher->getSessionValue();
-        $ye = $year->getSessionValue();
-        $sem = $semester->getSessionValue();
+        //verbose info
+        System::console_log(sprintf("content.php: hidden data set -> lp=%s, ye=%s, sem=%s",$lp,$ye,$sem));
 
         $file = $nav->getNewPath($_GET["file"], $lp, $ye, $sem);
         if (isset($_GET["inc"]) && ($_GET["inc"]==1) ) {
@@ -91,11 +104,10 @@ require_once(__DIR__ . '/lib/Year.php');
             $content->show($file);
         }
     }
+    //set hidden value for javascript (i.e. script/ajustlinks.js)
     ?>
-<script type="application/javascript" src="inc/script/adjust-links.js"></script>
-
 </div> <!-- /container -->
 <?php include_once(__DIR__ ."/inc/footer.inc"); ?>
-
+<script type="application/javascript" src="inc/script/adjust-links.js"></script>
 </body>
 </html>

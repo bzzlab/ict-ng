@@ -11,11 +11,9 @@ $nav = new Navigation();
 echo $nav->getSiteTitle();
 ?>
 <link href="inc/vendor/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
-<script src="inc/vendor/jquery/jquery-3.2.1.js"></script>
+<script src="inc/vendor/jquery/jquery-3.4.1.js"></script>
 <script src="inc/vendor/bootstrap/4.3.1/js/bootstrap.bundle.js"></script>
-<link href="inc/vendor/highlight/css/highlight.agate.css" media="screen" rel="stylesheet"/>
-<script type="text/javascript" src="inc/vendor/highlight/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<!--<link href="inc/vendor/prism/prism.css" rel="stylesheet">-->
 
 <!-- Custom styles for this template -->
 <link href="inc/theme.css" rel="stylesheet">

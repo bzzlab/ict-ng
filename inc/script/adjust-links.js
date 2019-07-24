@@ -10,23 +10,38 @@ function filterImages(src){
     return false;
 }
 
-//set correct path
+/**
+ * Adjust source path according to the input parameter
+ *
+ * @param obj: targeting html-element
+ * @param attribute: targeting html-attribute
+ * @param src: Path attribute
+ */
 function setPath(obj,attribute,src){
-    //src path should be changed with the lp (Lehrperson) key
+    //set teacher
+
     let lp = $("#lp_key").val();
     if (lp == "") {
         console.log("lp is empty!");
     }
+    //set year
+    let year = $("#year_key").val();
+    if (year == "") {
+        console.log("year is empty!");
+    }
+    //set semester
     let sem = $("#sem_key").val();
     if (sem == "") {
         console.log("sem is empty!");
     } else {
-        $(obj).attr(attribute, "data/"+lp+"/"+src);
-        console.log("data/"+lp+"/"+src);
+        $(obj).attr(attribute, "data/"+lp+"/"+year+"/"+sem+"/"+src);
+        console.log("Path adjusted: data/"+lp+"/"+year+"/"+sem+"/"+src);
     }
 }
 
 $(document).ready(function() {
+    console.time('adjust links');
+    console.log(`adjustlink - lp=${document.getElementById("lp_key").value},year=${document.getElementById("year_key").value},sem=${document.getElementById("sem_key").value}`);
     //select all <src> in <img> and change href accordingly
     let images = $("img");
     $.each(images, function() {
@@ -54,7 +69,7 @@ $(document).ready(function() {
 
     //select all anchor <a> in <p> and change href accordingly
     //this adjustment should be used only for
-    let link = $("p a");
+    /*let link = $("p a");
     $.each(link, function() {
         let attributeType = "href";
         let path = $(this).attr(attributeType);
@@ -63,7 +78,7 @@ $(document).ready(function() {
                 setPath($(this),attributeType,path);
             }
         }
-    });
+    });*/
 
     //select all source <source> in <video> and change src-attribute accordingly
     let video = $("video");
@@ -76,5 +91,6 @@ $(document).ready(function() {
             }
         }
     });
+    console.timeEnd('adjust links');
     //console.clear();
 });

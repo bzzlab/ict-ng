@@ -30,17 +30,17 @@ class Navigation
 
     public function clearSettings($type){
 
-        if ($type == "all" || $type == "cookie"){
+        //if ($type == "all" || $type == "cookie"){
             $this->teacher->setCookieValue(CookieIO::INVALID);
             $this->year->setCookieValue(CookieIO::INVALID);
             $this->semester->setCookieValue(CookieIO::INVALID);
-        }
+        //}
 
-        if ($type == "all" || $type == "session"){
+        //if ($type == "all" || $type == "session"){
             $this->teacher->setSessionValue(SessionIO::INVALID);
             $this->year->setSessionValue(SessionIO::INVALID);
             $this->semester->setSessionValue(SessionIO::INVALID);
-        }
+        //}
     }
 
     /**
@@ -53,9 +53,9 @@ class Navigation
             return false;
         }
         //get teacher
-        $lp = $this->year->settings[$year][0];
+        $lp = $this->year->getCurrentTeacher($year);
         //get semester or module
-        $sem = $this->year->settings[$year][1];
+        $sem = $this->year->getCurrentSemester($year);
 
         $lpArray = $this->teacher->getAllowedValues();
         if (!in_array($lp, $lpArray)) {
@@ -76,7 +76,7 @@ class Navigation
             echo "<input type='hidden' id='lp_key' value='".$lp."'/>";
         }
         if (strlen($year) > 0){
-            echo "<input type='hidden' id='lp_year' value='".$year."'/>";
+            echo "<input type='hidden' id='year_key' value='".$year."'/>";
         }
         if (strlen($sem) > 0){
             echo "<input type='hidden' id='sem_key' value='".$sem."'/>";
@@ -358,21 +358,25 @@ class Navigation
 
     /**
      * Redirect with teacher, year and semester
-     * @param $teacher
-     * @param $year
-     * @param $semester
+     * @param $lp: Teacher code
+     * @param $ye: Year code
+     * @param $sem: Semester code
      *
      */
-    public function redirect($teacher, $year, $semester)
+    public function redirect($lp, $ye, $sem)
     {
-        $this->teacher->setSessionValue($teacher);
+        /*$this->teacher->setSessionValue($teacher);
         $this->year->setSessionValue($year);
-        $this->semester->setSessionValue($semester);
+        $this->semester->setSessionValue($semester);*/
+
+        $this->teacher->setValue($lp);
+        $this->year->setValue($ye);
+        $this->semester->setValue($sem);
 
         $url = sprintf("Location: content.php?inc=1&file=data/%s/%s/%s/org/agenda.md",
-            $teacher, $year, $semester);
+            $lp, $ye, $sem);
         header($url);
-        die(0);
+        //die(0);
     }
 
 }
