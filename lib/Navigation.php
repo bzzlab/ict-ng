@@ -181,8 +181,7 @@ class Navigation
         {
             $base_url = sprintf("content.php?file=data/%s/%s/%s/org",$lp,$ye,$sem);
             $topNavList = array("Home" => $base_url . "/home.md",
-                "Organisation" => $base_url . "/organisation.md",
-                "Jahrgang" => "index.php?clear=all");
+                "Organisation" => $base_url . "/organisation.md");
         }
         return $topNavList;
     }
@@ -284,7 +283,12 @@ class Navigation
     }
 
     public function writeDropDownSemester(){
-        printf("%s", $this->getDropDownSemester()->write());
+        $sem = $this->semester->getValue();
+        //don't show semester ddl for BIVO 2019
+        if(!(strcmp($sem, "m286")==0))
+        {
+            printf("%s", $this->getDropDownSemester()->write());
+        }
     }
 
     public function writeDropDownMore(){
