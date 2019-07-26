@@ -63,11 +63,14 @@ if (isset($_POST["Go"])) {
                 <option value="2019">Jahrgang 19 (BIVO 19)</option>
             </select>
         <div>
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="chkSaveUrl" name="chkSaveUrl" value="saveUrl"/>
-            <label class="form-check-label" for="chkSaveUrl">Save settings</label>
+<!--        <div class="form-group form-check">-->
+<!--            <input type="checkbox" class="form-check-input" id="chkSaveUrl" name="chkSaveUrl" value="saveUrl"/>-->
+<!--            <label class="form-check-label" for="chkSaveUrl">Save settings</label>-->
+<!--        </div>-->
+        <div style="padding-top: 1rem">
+            <input type="submit" class="btn btn-primary" name="Go" value="Go">
         </div>
-        <input type="submit" class="btn btn-primary" name="Go" value="Go">
+
     </form>
     <!-- Ausgabe Meldung   -->
     <p style="color: #ff4a4a"><?=$msg?></p>
