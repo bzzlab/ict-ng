@@ -13,6 +13,7 @@ require_once(__DIR__ . '/lib/System.php');
 <html lang="de">
 <head>
     <?php include_once("inc/head.inc"); ?>
+    <link href="inc/vendor/prism/prism.css" rel="stylesheet" data-noprefix>
 </head>
 <body>
 <!-- Fixed navbar -->
@@ -109,5 +110,7 @@ require_once(__DIR__ . '/lib/System.php');
 </div> <!-- /container -->
 <?php include_once(__DIR__ ."/inc/footer.inc"); ?>
 <script type="application/javascript" src="inc/script/adjust-links.js"></script>
+<script src="inc/vendor/prism/prism.js"></script>
+<script src="inc/vendor/prism/prism-line-numbers.js"></script>
 </body>
 </html>
