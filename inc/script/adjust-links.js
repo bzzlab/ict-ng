@@ -69,7 +69,7 @@ $(document).ready(function() {
 
     //select all anchor <a> in <p> and change href accordingly
     //this adjustment should be used only for
-    /*let link = $("p a");
+    let link = $("a[name='video']");
     $.each(link, function() {
         let attributeType = "href";
         let path = $(this).attr(attributeType);
@@ -78,7 +78,7 @@ $(document).ready(function() {
                 setPath($(this),attributeType,path);
             }
         }
-    });*/
+    });
 
     //select all source <source> in <video> and change src-attribute accordingly
     let video = $("video");
