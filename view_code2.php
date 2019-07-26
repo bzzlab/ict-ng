@@ -13,9 +13,9 @@ $nav = new Navigation();
 </head>
 <body>
 <?php
-$lp = (new Teacher())->getSessionValue();
-$ye = (new Year())->getSessionValue();
-$sem = (new Semester())->getSessionValue();
+$lp = (new Teacher())->getValue();
+$ye = (new Year())->getValue();
+$sem = (new Semester())->getValue();
 
 if (isset($_GET["file"])) {
     $preStyle = "class=\"line-numbers\" data-src=\"inc/vendor/prism/prism-line-numbers.js\"";
