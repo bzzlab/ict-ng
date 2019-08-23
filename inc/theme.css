@@ -1,5 +1,5 @@
 body {
-padding-top: 70px;
+/* padding-top: 70px; */
 padding-bottom: 30px;
 }
 
@@ -16,6 +16,16 @@ h3 {
     background-color: lightblue;
     padding: 0.5rem;
 }
+
+h4 {
+  background-color: lightcyan;
+}
+
+#h4jb {
+  background-color: inherit;
+}
+
+
 small {
   font-size: 14px;
   font-weight: normal;
@@ -143,6 +153,7 @@ img.small { width: 40%; height: 40%; }
   margin-bottom: 3px; 
   width: 10%; 
   height: 10%; 
+  margin-top: -40px;
 }
 
 .iconM { 
