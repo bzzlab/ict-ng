@@ -36,9 +36,9 @@ require_once(__DIR__ . '/lib/Navigation.php');
     <?php
     //fix new lp
     if (isset($_GET["file"])) {
-        $lp = (new Teacher())->getSessionValue();
-        $ye = (new Year())->getSessionValue();
-        $sem = (new Semester())->getSessionValue();
+        $lp = (new Teacher())->getValue();
+        $ye = (new Year())->getValue();
+        $sem = (new Semester())->getValue();
         $nav = new Navigation();
 
         $file = $nav->getNewPath($_GET["file"],$lp,$ye,$sem);
