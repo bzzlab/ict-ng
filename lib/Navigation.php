@@ -150,16 +150,15 @@ class Navigation
         $sem = $this->semester->getSessionValue();
         $base_url = sprintf("content.php?file=data/%s/%s/%s/org",$lp,$ye,$sem);
         $topNavList = array("Home" => $base_url . "/home.md",
-            "Agenda" => $base_url . "/agenda.md",
+            "Agenda" => sprintf("content.php?inc=1&file=data/%s/%s/%s/org/agenda.md",$lp,$ye,$sem),
             "Organisation" => $base_url . "/organisation.md");
 
         //Change url for specific semester
-        if(strcmp($sem, "08")==0 || strcmp($sem, "04")==0 ||
-            strcmp($sem, "07")==0 || strcmp($sem,"03")==0){
-            $topNavList["Agenda"] = sprintf("content.php?inc=1&file=data/%s/%s/%s/org/agenda.md",$lp,$ye,$sem);;
+        if(strcmp($sem, "01")==0 || strcmp($sem, "02")==0){
+            $topNavList["Agenda"] = sprintf("content.php?file=data/%s/%s/%s/org/agenda.md",$lp,$ye,$sem);
         }
 
-        if((strcmp($sem, "05")==0))
+        if((strcmp($sem, "05")==0) && (strcmp($ye, "2016")==0))
         {
             //remove the last element
             //array_pop($topNavList);
@@ -179,8 +178,9 @@ class Navigation
 
         if((strcmp($sem, "m286")==0))
         {
-            $base_url = sprintf("content.php?file=data/%s/%s/%s/org",$lp,$ye,$sem);
+            $base_url = sprintf("content.php?inc=1&file=data/%s/%s/%s/org",$lp,$ye,$sem);
             $topNavList = array("Home" => $base_url . "/home.md",
+                "Agenda" => $base_url . "/agenda.md",
                 "Organisation" => $base_url . "/organisation.md");
         }
         return $topNavList;
