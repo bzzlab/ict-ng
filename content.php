@@ -39,8 +39,9 @@ require_once(__DIR__ . '/lib/System.php');
         <span class="navbar-toggler-icon"></span>
     </button>
     <ul class="navbar-nav" style="float:right;">
-        <li><button type="button" class="btn btn-link" onclick="history.back(-1)">Zurück</button>
-        </li>
+<!--        <li class="nav-item"><button type="button" class="nav-link" onclick="history.back(-1)">Zurück</button>-->
+<!--        </li>-->
+        <li class="nav-item"><a class="nav-link" href="#" onclick="history.back(-1)">Zurück</a></li>
     </ul>
 </nav>
 <?php }
