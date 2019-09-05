@@ -23,3 +23,20 @@ function resizeIframeWidth(iframe,width) {
 }
 
 
+function showSolution(elements, specifiedDisplay) {
+    var computedDisplay, element, index;
+
+    elements = elements.length ? elements : [elements];
+    for (index = 0; index < elements.length; index++) {
+        element = elements[index];
+
+        // Remove the element's inline display styling
+        element.style.display = '';
+        computedDisplay = window.getComputedStyle(element, null).getPropertyValue('display');
+
+        if (computedDisplay === 'none') {
+            element.style.display = specifiedDisplay || 'block';
+        }
+    }
+}
+

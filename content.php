@@ -104,6 +104,9 @@ require_once(__DIR__ . '/lib/System.php');
             $content->showWithIncludes($file);
         } else {
             $content->show($file);
+            if (isset($_GET["sol"]) && ($_GET["sol"]==1) ) {
+                echo "<script>showSolution(document.querySelectorAll('.solution'));</script>";
+            }
         }
     }
     //set hidden value for javascript (i.e. script/ajustlinks.js)
