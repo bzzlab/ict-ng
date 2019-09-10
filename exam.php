@@ -1,71 +1,15 @@
+<?php
+require_once(__DIR__ . '/lib/ContentView.php');
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <title>LB-Beilage</title>
     <meta charset="UTF-8">
-    <?php
-    include_once(__DIR__ . "/inc/exam.inc");
-    ?>
-    <style type="text/css">
-        /* students */
-        .gotop {
-            float: right;
-            font-size: 14px;
-        }
-        div.flex-container{
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            align-items: stretch;
-        }
-        div.flex-container > iframe.example {
-            margin: 0px;
-            padding: 0px;
-        }
-        /* test */
-        div.box1, div.box2{
-            width: 410px;
-            float: left;
-        }
-        figure {
-            margin: 0px;
-        }
-        div.box3 {
-            width: 300px;
-            float: left;
-        }
-        div.besideBoxes {
-            display: block;
-            vertical-align: center;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-        div.clear {
-            clear: both;
-        }
-        pre {
-            text-align: left;
-            background: rgb(211,211,211);
-        }
-
-        code {
-            border: 0px;
-        }
-
-        iframe {
-            display: inline;
-            overflow: hidden;
-            border:none;
-            width: 400px;
-            margin: 0px;
-        }
-
-        .red {
-            background-color: red;
-        }
-    </style>
+    <?php include_once(__DIR__ . "/inc/head.inc"); ?>
+    <script type="application/javascript" src="inc/script/handlebars-v4.0.11.js"></script>
+    <link href="inc/exam.css" rel="stylesheet">
+    <link href="inc/vendor/prism/prism.css" rel="stylesheet" data-noprefix>
 </head>
 
 <body>
@@ -128,7 +72,7 @@
                     src="view_code2.php?file={{path}}/{{code}}&browser=no">
                 <p>Your browser does not support iframes.</p></iframe>
         </figure>
-        <figure><figcaption>{{img_label}}</figcaption><img style="{{style_img}};" src="data/lp02/{{path}}/{{image}}"/></figure>
+        <figure><figcaption>{{img_label}}</figcaption><img style="{{style_img}};" src="{{path}}/{{image}}"/></figure>
     </div>
 </script>
 
@@ -184,7 +128,7 @@
                     src="view_code2.php?file={{path}}/{{code2}}&browser=no">
                 <p>Your browser does not support iframes.</p></iframe>
         </figure>
-        <figure><img style="{{style_img}};" src="data/lp02/{{path}}/{{image}}"/></figure>
+        <figure><img style="{{style_img}};" src="{{path}}/{{image}}"/></figure>
     </div>
 </script>
 
@@ -198,22 +142,22 @@
         <!-- Teil-Lösungen  -->
         <iframe class="example" style="width:{{w1}};"
                 scrolling="no" onload="resizeIframe(this)"
-                src="view_code2.php?file={{path}}/{{a1}}&browser=no&style=exam">
+                src="view_code2.php?file={{path}}/{{a1}}&browser=no">
             <p>Your browser does not support iframes.</p>
         </iframe>
         <iframe class="example" style="width:{{w1}};"
                 scrolling="no" onload="resizeIframe(this)"
-                src="view_code2.php?file={{path}}/{{a2}}&browser=no&style=exam">
+                src="view_code2.php?file={{path}}/{{a2}}&browser=no">
             <p>Your browser does not support iframes.</p>
         </iframe>
         <iframe class="example" style="width:{{w1}};"
                 scrolling="no" onload="resizeIframe(this)"
-                src="view_code2.php?file={{path}}/{{a3}}&browser=no&style=exam">
+                src="view_code2.php?file={{path}}/{{a3}}&browser=no">
             <p>Your browser does not support iframes.</p>
         </iframe>
         <iframe class="example" style="width:{{w1}};"
                 scrolling="no" onload="resizeIframe(this)"
-                src="view_code2.php?file={{path}}/{{a4}}&browser=no&style=exam">
+                src="view_code2.php?file={{path}}/{{a4}}&browser=no">
             <p>Your browser does not support iframes.</p>
         </iframe>
     </div>
@@ -249,7 +193,7 @@
    <div id="{{aufg}}_box2" class="box2">
       <h4>Vorgabe</h4>
       <figure>
-        <img width="medium" src="data/lp02/{{path}}/{{image}}"/>
+        <img width="medium" src="{{path}}/{{image}}"/>
       </figure>
    </div>
     <!-- possible solutions -->
@@ -281,7 +225,7 @@
    <div id="{{aufg}}_box2" class="box2">
       <h4>Vorgabe</h4>
       <figure>
-        <img width="medium" src="data/lp02/{{path}}/{{image}}"/>
+        <img width="medium" src="{{path}}/{{image}}"/>
       </figure>
    </div>
     <!-- possible solutions -->
@@ -305,7 +249,7 @@
       <h4>Lösung</h4>
        <figure>
            <iframe class="example"  scrolling="no" onload="resizeIframe(this)"
-                   src="data/lp02/{{path}}//{{file}}">
+                   src="{{path}}//{{file}}">
                <p>Your browser does not support iframes.</p></iframe>
        </figure>
    </div>
@@ -330,14 +274,14 @@
     <div id="code-container"></div>
 
     <?php
-    if (isset($_GET["js"])) {
-        printf("<script type=\"text/javascript\" src='%s'></script>", $_GET["js"]);
-    }
+    $contentView = new ContentView();
+    $contentView->show();
     ?>
 </div> <!-- /container -->
 
-
-
-<?php include_once(__DIR__ . "/inc/footer.inc"); ?>
-
+<?php include_once(__DIR__ ."/inc/footer.inc"); ?>
+<script type="application/javascript" src="inc/script/adjust-links.js"></script>
+<script src="inc/vendor/prism/prism.js"></script>
+<script src="inc/vendor/prism/prism-line-numbers.js"></script>
 </body>
+</html>

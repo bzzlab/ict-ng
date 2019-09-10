@@ -51,7 +51,7 @@ sup {
 der Standard sein.
 */
 .jumbotron {
-  margin-top: -45px;
+  /* margin-top: -45px;*/
   background-color: #dce1e2;
 }
 /*
@@ -160,8 +160,8 @@ img.small { width: 40%; height: 40%; }
   float: right;
   margin-right: 3px;
   margin-bottom: 3px; 
-  width: 40%; 
-  height: 40%; 
+  width: 25%; 
+  height: 25%; 
 }
 
 .icon32 { 

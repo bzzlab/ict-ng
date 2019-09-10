@@ -1,0 +1,58 @@
+/* students */
+.gotop {
+  float: right;
+  font-size: 14px;
+}
+div.flex-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+div.flex-container > iframe.example {
+    margin: 0px;
+    padding: 0px;
+}
+/* test */
+div.box1, div.box2{
+    width: 410px;
+    float: left;
+}
+figure {
+    margin: 0px;
+}
+div.box3 {
+    width: 300px;
+    float: left;
+}
+div.besideBoxes {
+    display: block;
+    vertical-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+div.clear {
+    clear: both;
+}
+pre {
+    text-align: left;
+    background: rgb(211,211,211);
+}
+
+code {
+    border: 0px;
+}
+
+iframe {
+    display: inline;
+    overflow: hidden;
+    border:none;
+    width: 400px;
+    margin: 0px;
+}
+
+.red {
+    background-color: red;
+}

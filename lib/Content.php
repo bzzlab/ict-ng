@@ -27,6 +27,17 @@ class Content
         $dir = pathinfo($file, PATHINFO_DIRNAME);
         if (strpos($extension, "md") !== false) {
 
+            /*
+            Reproduce problem:
+                1. Browser -> Application -> Cookies
+                2. Change PHP-Session-ID
+                3. Select another Navigation-IT -> Bum -> Blank-Site
+                4. Problem Cookies with the essential parameter are not read and session renewed.
+            Possible fixes: Try/catch -> https://stackify.com/php-try-catch-php-exception-tutorial/
+            Logging: https://www.php.net/manual/en/function.openlog.php or http://logging.apache.org/log4php/
+            
+            Maybe a better way is to check the session status -> https://www.php.net/manual/en/function.session-status.php
+            */
             $txt_file = file_get_contents($file);
             $lines = explode("\n", $txt_file);
             array_shift($lines);
