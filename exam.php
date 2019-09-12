@@ -57,7 +57,7 @@ require_once(__DIR__ . '/lib/ContentView.php');
                     src="view_code2.php?file={{path}}/{{code}}&browser=no">
                 <p>Your browser does not support iframes.</p></iframe>
         </figure>
-        <figure><img style="{{style_img}};" src="data/lp02/{{path}}/{{image}}"/></figure>
+        <figure><img style="{{style_img}};" src="{{path}}/{{image}}"/></figure>
     </div>
 </script>
 <script id="tpl-web2-v2" type="text/x-handlebars-template">
@@ -89,8 +89,6 @@ require_once(__DIR__ . '/lib/ContentView.php');
                     src="view_code2.php?file={{path}}/{{code}}&browser=no">
                 <p>Your browser does not support iframes.</p></iframe>
         </figure>
-        <!--        <figure><figcaption>{{img_label}}</figcaption><img style="{{style_img}};"-->
-        <!--                                                           src="data/lp02/{{path}}/{{image}}"/></figure>-->
         <!-- Possible solutions  -->
         <form>
             <div class="input-group mb-3">
@@ -275,7 +273,7 @@ require_once(__DIR__ . '/lib/ContentView.php');
 
     <?php
     $contentView = new ContentView();
-    $contentView->show();
+    $contentView->showExam();
     ?>
 </div> <!-- /container -->
 

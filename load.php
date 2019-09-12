@@ -1,6 +1,8 @@
 <?php
-require_once(__DIR__ . '/lib/Teacher.php');
-$teacher = new Teacher();
+require_once(__DIR__ . '/lib/ContentView.php');
+$contentView = new ContentView();
+$contentView->showExamTests();
+/*
 $content = "";
 if (isset($_GET["file"])) {
 	$lp = $teacher->getSessionValue();
@@ -21,3 +23,4 @@ if (isset($_GET["file"])) {
 }
 //dump content
 printf("%s",$content);
+*/
