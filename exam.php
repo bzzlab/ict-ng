@@ -247,7 +247,7 @@ require_once(__DIR__ . '/lib/ContentView.php');
       <h4>Lösung</h4>
        <figure>
            <iframe class="example"  scrolling="no" onload="resizeIframe(this)"
-                   src="{{path}}//{{file}}">
+                   src="load.php?file={{path}}//{{file}}">
                <p>Your browser does not support iframes.</p></iframe>
        </figure>
    </div>
