@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Alert</title>
+    <style>
+    	.container {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			background-color: red;
+			height: 800px;
+		}
+		.container > div {
+		    background-color: yellow;
+		    width: 400px;
+		    margin: 10px;
+		    text-align: center;
+		    line-height: 75px;
+		    font-size: 5rem;
+		    font-family: sans-serif;
+		    color: red;
+		}
+
+		.blink {
+    		-webkit-animation: blink 1s step-end infinite;
+            animation: blink 1s step-end infinite;
+		}
+		@-webkit-keyframes blink { 50% { visibility: hidden; }}
+		@keyframes blink { 50% { visibility: hidden; }}
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div>
+    	<img src="img/angry-teacher-2.jpg">
+    	<span class="blink">Keyboard usage is not allowed!</span>
+    </div>
+</div>
+
+<audio id="myaudio" autoplay>
+   <source src="audio/alarm-1.mp3" type="audio/mp3">
+   Dieser Webbrowser unterstützt das audio-Tag nicht
+</audio>
+
+</body>
+</html>
