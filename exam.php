@@ -24,6 +24,33 @@ require_once(__DIR__ . '/lib/ContentView.php');
     </div>
 </nav>
 
+<script>
+  document.onkeydown = keyboardDown;
+  document.onkeyup = keyboardUp;
+  document.oncontextmenu = function(e){
+    let evt = new Object({keyCode:93});
+    stopEvent(e);
+    keyboardUp(evt);
+  };
+  function stopEvent(event){
+    if(event.preventDefault != undefined)
+    event.preventDefault();
+    if(event.stopPropagation != undefined)
+    event.stopPropagation();
+  }
+  function keyboardDown(e){
+    window.location.replace("errors/exam-kbd-used.html");
+    return false;
+    //alert("kbd-1 your pressed: "+e);
+  }
+  function keyboardUp(e){
+     window.location.replace("errors/exam-kbd-used.html");
+    return false;
+    //alert("kbd-2 your pressed: "+e);
+  }
+</script>
+
+
 <!--show ONE HTML-Code WITHOUT image-->
 <script id="tpl-web1" type="text/x-handlebars-template">
     <a class="gotop" href="#top">top</a>
