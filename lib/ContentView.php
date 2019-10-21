@@ -110,6 +110,8 @@ class ContentView
             $this->setSiteParameters();
             //fetch the correct path based on lp, ye, sem
             $file = $this->nav->getNewPath($_GET["file"], $this->lp, $this->ye, $this->sem);
+            //for debug-purpose
+            //echo "<script>console.log(\"lib/ContentView: ".$file."\");</script>";
             $content = file_get_contents($file);
             if (isset($_GET["style"])) {
                 $file2 = $this->nav->getNewPath($_GET["style"], $this->lp, $this->ye, $this->sem);
@@ -119,8 +121,12 @@ class ContentView
                 $file2 = $this->nav->getNewPath($_GET["script"], $this->lp, $this->ye, $this->sem);
                 $content = str_replace("script.js", $file2, $content);
             }
+            if (isset($_GET["img"])) {
+                $file2 = $this->nav->getNewPath($_GET["img"], $this->lp, $this->ye, $this->sem);
+                $content = str_replace("image.svg", $file2, $content);
+            }
             if (isset($_GET["text"])) {
-                $file2 = $this->nav->getNewPath($_GET["script"], $this->lp, $this->ye, $this->sem);
+                $file2 = $this->nav->getNewPath($_GET["text"], $this->lp, $this->ye, $this->sem);
                 $content = file_get_contents($file2);
             }
         }
