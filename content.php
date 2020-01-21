@@ -18,7 +18,7 @@ require_once(__DIR__ . '/lib/System.php');
 <body>
 <!-- Fixed navbar -->
 <?php if (!isset($_GET["top"])) { ?>
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -34,7 +34,7 @@ require_once(__DIR__ . '/lib/System.php');
 <?php } elseif (isset($_GET["top"])) {
             if ($_GET["top"] == 1) {
 ?>
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>

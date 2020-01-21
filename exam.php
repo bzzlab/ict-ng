@@ -5,7 +5,10 @@ require_once(__DIR__ . '/lib/ContentView.php');
 <html lang="de">
 <head>
     <title>LB-Beilage</title>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
     <?php include_once(__DIR__ . "/inc/head.inc"); ?>
     <script type="application/javascript" src="inc/script/handlebars-v4.0.11.js"></script>
     <link href="inc/exam.css" rel="stylesheet">

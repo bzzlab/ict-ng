@@ -26,7 +26,6 @@ class Content
         $extension = pathinfo($file, PATHINFO_EXTENSION);
         $dir = pathinfo($file, PATHINFO_DIRNAME);
         if (strpos($extension, "md") !== false) {
-
             /*
             Reproduce problem:
                 1. Browser -> Application -> Cookies

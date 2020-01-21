@@ -33,7 +33,7 @@ class NavDropDown
     public function getTooltip(): string
     {
         $result = "";
-        https://getbootstrap.com/docs/4.1/components/tooltips/
+        //https://getbootstrap.com/docs/4.1/components/tooltips/
         if (strlen($this->_ddlExtra->getTooltip())>0){
             $result = sprintf("data-toggle=\"tooltip\" data-placement=\"top\" 
                     title=\"%s\"",$this->_ddlExtra->getTooltip());
