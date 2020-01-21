@@ -66,8 +66,10 @@ class Semester
      */
     public function getAllowedValues(){
         //Return all possible semester
-        return array("01", "02", "03", "04", "05", "06", "07", "08", "pw01", "m286");
+        return array("01", "02", "03", "04", "05", "06", "07", "08", "pw01", "m286", "m287");
     }
+
+
 
 
     /**

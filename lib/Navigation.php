@@ -160,8 +160,6 @@ class Navigation
 
         if((strcmp($sem, "05")==0) && (strcmp($ye, "2016")==0))
         {
-            //remove the last element
-            //array_pop($topNavList);
             //add element for Musterlösung
             $topNavList += ["Lösungen" => $base_url . "/loesungen.md"];
         }
@@ -282,11 +280,48 @@ class Navigation
         return new NavDropDownList($_List, "Semester");
     }
 
+    private function getDropDownModules() : NavDropDownList{
+        $lp = $this->teacher->getSessionValue();
+        $ye = $this->year->getSessionValue();
+        $sem = $this->semester->getSessionValue();
+
+        //set current semester that is set in Year -> settings
+        if (strlen($currentSemester = $this->year->getCurrentSemester($ye)) <= 0){
+            $currentSemester = $sem;
+        }
+
+        //init ddl-nav-list
+        $semArray = $this->semester->getAllowedValues();
+        $i = 0;
+        $_List = array();
+        //Create list with a drop-down-list containing ict-modules
+        foreach ($semArray as $item){
+            //if semester contains an 'm' ...
+            if (strpos($item, 'm') !== false) {
+                //... then it's a semester determined by a module
+                $_ddExtra = new NavDropDownExtra();
+                //if $current semester is equal index $i then skip adding url
+                if((strcmp($currentSemester, sprintf('%s',$item))==0)) {
+                    $_ddExtra->setBadge("badge badge-info");
+                    $_ddExtra->setTooltip("Ihr Semester in diesem Lehrjahr");
+                }
+                array_push($_List, new NavDropDown(sprintf('%s',$item),
+                    sprintf("content.php?sem=%s&inc=1&file=data/%s/%s/%s/org/agenda.md",
+                        $item,$lp,$ye,$item), $_ddExtra));
+            }
+
+        }
+        return new NavDropDownList($_List, "Module");
+    }
     public function writeDropDownSemester(){
         $sem = $this->semester->getValue();
-        //don't show semester ddl for BIVO 2019
-        if(!(strcmp($sem, "m286")==0))
-        {
+        //if semester contains an 'm' ...
+        if (strpos($sem, 'm') !== false) {
+            //... then it's a semester determined by a module
+            //show module list according to BIVO 2019
+            printf("%s", $this->getDropDownModules()->write());
+        } else {
+            //show semester list according to BIVO 2011
             printf("%s", $this->getDropDownSemester()->write());
         }
     }
