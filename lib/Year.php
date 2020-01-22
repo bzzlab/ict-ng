@@ -31,9 +31,9 @@ class Year
      */
     public $settings=array(
         2016 => array("lp02","05"),
-        2017 => array("lp02","05"),
-        2018 => array("lp01","03"),
-        2019 => array("lp02","m286")
+        2017 => array("lp02","06"),
+        2018 => array("lp01","04"),
+        2019 => array("lp02","m287")
     );
 
     public function getCurrentSemester($year){
