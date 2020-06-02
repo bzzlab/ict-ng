@@ -39,7 +39,7 @@ class Teacher {
      * @return array
      */
     public function getAllowedValues():array {
-        return array("lp01","lp02");
+        return array("lp01","lp02","lp03");
     }
 
 

@@ -69,7 +69,7 @@ $(document).ready(function() {
 
     //select all anchor <a> in <p> and change href accordingly
     //this adjustment should be used only for
-    let link = $("a[name='video'], a[name='download']");
+    let link = $("a[name='video'], a[name='download'], a[name='document']");
     $.each(link, function() {
         let attributeType = "href";
         let path = $(this).attr(attributeType);

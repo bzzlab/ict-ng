@@ -61,6 +61,7 @@ if (isset($_POST["Go"])) {
                 <option value="2017">Jahrgang 17 (BIVO 11)</option>
                 <option value="2018">Jahrgang 18 (BIVO 11)</option>
                 <option value="2019">Jahrgang 19 (BIVO 19)</option>
+                <option value="2020">Jahrgang 20 (BIVO 19)</option>
             </select>
         <div>
 <!--        <div class="form-group form-check">-->

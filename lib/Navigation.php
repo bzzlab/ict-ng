@@ -204,6 +204,8 @@ class Navigation
         array_push($_List,
             new NavDropDown("Jahrgang","index.php?clear=all", $_ddlExtra ));
         array_push($_List,
+            new NavDropDown("Helpdesk", $base_url . "/helpdesk/index.md", $_ddlExtra ));
+        array_push($_List,
             new NavDropDown("Selfhtml","https://wiki.selfhtml.org", $_ddlExtra ));
         array_push($_List,
             new NavDropDown("Can I use","http://caniuse.com/", $_ddlExtra));

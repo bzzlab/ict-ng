@@ -31,8 +31,12 @@ if (isset($_GET["file"])) {
             htmlspecialchars(file_get_contents($file)));
         } else {
             //when style=css
-            printf("<pre><code class='%s'>%s</code></pre>",
-                $style, htmlspecialchars(file_get_contents($file)));
+            //printf("<pre><code class='%s'>%s</code></pre>",
+            //    $style, htmlspecialchars(file_get_contents($file)));
+
+            $tmpstyle =sprintf("class=\"language-%s\"",$style);
+            printf("<pre %s><code %s>%s</code></pre>", $preStyle, $tmpstyle,
+                htmlspecialchars(file_get_contents($file)));
         }
     }
     else {
@@ -50,7 +54,7 @@ if (isset($_GET["browser"])) {
 }
 
 if (isset($_GET["file2"])) {
-    $lp = $teacher->getSessionValue();
+    //$lp = $teacher->getSessionValue();
     $file2 = $nav->getNewPath($_GET["file2"], $lp, $ye,$sem);
     $browser_link = sprintf("So sieht es im <a href='%s' target='tab'>Browser</a> aus.",$file2);
 }

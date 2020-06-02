@@ -21,6 +21,12 @@ h4 {
   background-color: lightcyan;
 }
 
+h4.instruction {
+  background-color: orange;
+}
+
+
+
 #h4jb {
   background-color: inherit;
 }
@@ -51,7 +57,7 @@ sup {
 der Standard sein.
 */
 .jumbotron {
-  margin-top: 20px;
+  margin-top: 20px !important;
   background-color: #dce1e2;
 }
 /*
@@ -259,4 +265,15 @@ mark, .mark {
 
 .form-check{
     padding-top: 0.5rem;!important;
+}
+
+.greetings {
+    border-radius: 2.5rem;
+    border-style: solid;
+    border-color: green;
+    padding: 2.5rem;
+    margin: 2.55rem;
+    text-align: center;
+    border-width: 0.7rem;
+    font-size: 2rem;
 }

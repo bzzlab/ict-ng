@@ -33,7 +33,8 @@ class Year
         2016 => array("lp02","05"),
         2017 => array("lp02","06"),
         2018 => array("lp01","04"),
-        2019 => array("lp02","m287")
+        2019 => array("lp02","m288"),
+        2020 => array("lp02","m286")
     );
 
     public function getCurrentSemester($year){
@@ -44,7 +45,7 @@ class Year
     }
 
     public function getAllowedValues():array {
-        return array(2016,2017,2018,2019);
+        return array(2016,2017,2018,2019,2020,9001);
     }
 
     /**
